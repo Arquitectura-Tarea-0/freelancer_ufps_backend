@@ -1,7 +1,13 @@
-package com.arqui.ufps.freelancer.entities;
+package com.arqui.ufps.freelancer.models.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -21,23 +27,37 @@ public class User implements Serializable {
 	@Column(name="id_user")
 	private int idUser;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_at")
+	@Temporal(TemporalType.DATE)
+	@Column(name="created_at")	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createdAt;
 
 	private String email;
 
+//	@JsonIgnore
 	private String password;
 
 	private String phone;
 
 	private String role;
+	
+	
+	public User(Date createdAt, String email, String password, String phone, String role) {
+		super();
+		this.createdAt = createdAt;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.role = role;
+	}
 
 	//bi-directional many-to-one association to CurriculumVitae
 	@OneToMany(mappedBy="user")
 	private List<CurriculumVitae> curriculumVitaes;
 
 	//bi-directional many-to-one association to ServiceAttendace
+	@JsonManagedReference
 	@OneToMany(mappedBy="user")
 	private List<ServiceAttendace> serviceAttendaces;
 

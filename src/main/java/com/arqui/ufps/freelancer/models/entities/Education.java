@@ -1,4 +1,4 @@
-package com.arqui.ufps.freelancer.entities;
+package com.arqui.ufps.freelancer.models.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;

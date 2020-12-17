@@ -1,7 +1,11 @@
-package com.arqui.ufps.freelancer.entities;
+package com.arqui.ufps.freelancer.models.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -27,12 +31,14 @@ public class ServiceAttendace implements Serializable {
 	private BigDecimal state;
 
 	//bi-directional many-to-one association to File
+	@JsonManagedReference
 	@OneToMany(mappedBy="serviceAttendace")
 	private List<File> files;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 
 	public ServiceAttendace() {

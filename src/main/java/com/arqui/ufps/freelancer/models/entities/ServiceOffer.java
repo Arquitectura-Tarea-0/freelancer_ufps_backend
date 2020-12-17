@@ -1,4 +1,4 @@
-package com.arqui.ufps.freelancer.entities;
+package com.arqui.ufps.freelancer.models.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -6,20 +6,18 @@ import java.math.BigDecimal;
 
 
 /**
- * The persistent class for the service_request database table.
+ * The persistent class for the service_offers database table.
  * 
  */
 @Entity
-@Table(name="service_request")
-@NamedQuery(name="ServiceRequest.findAll", query="SELECT s FROM ServiceRequest s")
-public class ServiceRequest implements Serializable {
+@Table(name="service_offers")
+@NamedQuery(name="ServiceOffer.findAll", query="SELECT s FROM ServiceOffer s")
+public class ServiceOffer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
-	private int duration;
 
 	private BigDecimal price;
 
@@ -29,8 +27,11 @@ public class ServiceRequest implements Serializable {
 	@Column(name="terms_and_conditions")
 	private String termsAndConditions;
 
+	@Lob
 	@Column(name="terms_service")
 	private String termsService;
+
+	private String title;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -41,7 +42,7 @@ public class ServiceRequest implements Serializable {
 	@ManyToOne
 	private Category category;
 
-	public ServiceRequest() {
+	public ServiceOffer() {
 	}
 
 	public int getId() {
@@ -50,14 +51,6 @@ public class ServiceRequest implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getDuration() {
-		return this.duration;
-	}
-
-	public void setDuration(int duration) {
-		this.duration = duration;
 	}
 
 	public BigDecimal getPrice() {
@@ -90,6 +83,14 @@ public class ServiceRequest implements Serializable {
 
 	public void setTermsService(String termsService) {
 		this.termsService = termsService;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public User getUser() {

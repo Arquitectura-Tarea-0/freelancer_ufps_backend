@@ -1,7 +1,9 @@
-package com.arqui.ufps.freelancer.entities;
+package com.arqui.ufps.freelancer.models.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
 
 
@@ -28,6 +30,7 @@ public class File implements Serializable {
 	//bi-directional many-to-one association to ServiceAttendace
 	@ManyToOne
 	@JoinColumn(name="service_attendace_id")
+	@JsonBackReference
 	private ServiceAttendace serviceAttendace;
 
 	public File() {
