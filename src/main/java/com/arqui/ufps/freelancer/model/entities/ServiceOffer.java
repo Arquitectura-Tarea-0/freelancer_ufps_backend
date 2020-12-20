@@ -36,13 +36,13 @@ public class ServiceOffer implements Serializable {
 
     //bi-directional many-to-one association to User
     @ManyToOne
-    @JsonManagedReference(value = "offerUser")
+    @JsonBackReference(value = "offerUser")
     @JoinColumn(name = "user_id")
     private User user;
 
     //bi-directional many-to-one association to Category
     @ManyToOne
-    @JsonManagedReference(value = "offerCategory")
+    @JsonBackReference(value = "offerCategory")
     private Category category;
 
     public ServiceOffer() {

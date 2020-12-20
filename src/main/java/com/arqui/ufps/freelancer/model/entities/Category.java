@@ -31,7 +31,7 @@ public class Category implements Serializable {
 
 	//bi-directional many-to-one association to ServiceOffer
 	@OneToMany(mappedBy="category")
-	@JsonBackReference(value = "offerCategory")
+	@JsonManagedReference(value = "offerCategory")
 	private List<ServiceOffer> serviceOffers;
 
 	//bi-directional many-to-one association to ServiceRequest

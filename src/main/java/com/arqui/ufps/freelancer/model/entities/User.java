@@ -55,6 +55,7 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to CurriculumVitae
 	@OneToMany(mappedBy="user")
+	@JsonManagedReference(value = "curriculumStudent")
 	private List<CurriculumVitae> curriculumVitaes;
 
 	//bi-directional many-to-one association to ServiceAttendace
@@ -68,7 +69,7 @@ public class User implements Serializable {
 	private List<ServiceAttendace> serviceAttendacesContractor;
 
 	//bi-directional many-to-one association to ServiceOffer
-	@JsonBackReference(value = "offerUser")
+	@JsonManagedReference(value = "offerUser")
 	@OneToMany(mappedBy="user")
 	private List<ServiceOffer> serviceOffers;
 
