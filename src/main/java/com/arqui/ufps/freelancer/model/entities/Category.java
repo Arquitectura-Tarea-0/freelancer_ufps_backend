@@ -1,5 +1,8 @@
 package com.arqui.ufps.freelancer.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -28,6 +31,7 @@ public class Category implements Serializable {
 
 	//bi-directional many-to-one association to ServiceOffer
 	@OneToMany(mappedBy="category")
+	@JsonBackReference(value = "offerCategory")
 	private List<ServiceOffer> serviceOffers;
 
 	//bi-directional many-to-one association to ServiceRequest

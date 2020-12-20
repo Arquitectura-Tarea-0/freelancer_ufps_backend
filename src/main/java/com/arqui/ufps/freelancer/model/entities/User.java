@@ -3,6 +3,7 @@ package com.arqui.ufps.freelancer.model.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -57,20 +58,22 @@ public class User implements Serializable {
 	private List<CurriculumVitae> curriculumVitaes;
 
 	//bi-directional many-to-one association to ServiceAttendace
-	@JsonManagedReference
+	@JsonManagedReference(value = "attendanceStudent")
 	@OneToMany(mappedBy="studentId")
 	private List<ServiceAttendace> serviceAttendacesStudent;
 
 	//bi-directional many-to-one association to ServiceAttendace
-	@JsonManagedReference
+	@JsonManagedReference(value = "attendanceContractor")
 	@OneToMany(mappedBy="contractorId")
 	private List<ServiceAttendace> serviceAttendacesContractor;
 
 	//bi-directional many-to-one association to ServiceOffer
+	@JsonBackReference(value = "offerUser")
 	@OneToMany(mappedBy="user")
 	private List<ServiceOffer> serviceOffers;
 
 	//bi-directional many-to-one association to ServiceRequest
+	@JsonManagedReference(value = "requestUser")
 	@OneToMany(mappedBy="user")
 	private List<ServiceRequest> serviceRequests;
 
