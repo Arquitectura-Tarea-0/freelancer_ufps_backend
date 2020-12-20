@@ -58,8 +58,13 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to ServiceAttendace
 	@JsonManagedReference
-	@OneToMany(mappedBy="user")
-	private List<ServiceAttendace> serviceAttendaces;
+	@OneToMany(mappedBy="studentId")
+	private List<ServiceAttendace> serviceAttendacesStudent;
+
+	//bi-directional many-to-one association to ServiceAttendace
+	@JsonManagedReference
+	@OneToMany(mappedBy="contractorId")
+	private List<ServiceAttendace> serviceAttendacesContractor;
 
 	//bi-directional many-to-one association to ServiceOffer
 	@OneToMany(mappedBy="user")
@@ -142,26 +147,20 @@ public class User implements Serializable {
 		return curriculumVitae;
 	}
 
-	public List<ServiceAttendace> getServiceAttendaces() {
-		return this.serviceAttendaces;
+	public List<ServiceAttendace> getServiceAttendacesStudent() {
+		return serviceAttendacesStudent;
 	}
 
-	public void setServiceAttendaces(List<ServiceAttendace> serviceAttendaces) {
-		this.serviceAttendaces = serviceAttendaces;
+	public void setServiceAttendacesStudent(List<ServiceAttendace> serviceAttendacesStudent) {
+		this.serviceAttendacesStudent = serviceAttendacesStudent;
 	}
 
-	public ServiceAttendace addServiceAttendace(ServiceAttendace serviceAttendace) {
-		getServiceAttendaces().add(serviceAttendace);
-		serviceAttendace.setUser(this);
-
-		return serviceAttendace;
+	public List<ServiceAttendace> getServiceAttendacesContractor() {
+		return serviceAttendacesContractor;
 	}
 
-	public ServiceAttendace removeServiceAttendace(ServiceAttendace serviceAttendace) {
-		getServiceAttendaces().remove(serviceAttendace);
-		serviceAttendace.setUser(null);
-
-		return serviceAttendace;
+	public void setServiceAttendacesContractor(List<ServiceAttendace> serviceAttendacesContractor) {
+		this.serviceAttendacesContractor = serviceAttendacesContractor;
 	}
 
 	public List<ServiceOffer> getServiceOffers() {

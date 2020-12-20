@@ -37,9 +37,15 @@ public class ServiceAttendace implements Serializable {
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="student_id")
 	@JsonBackReference
-	private User user;
+	private User studentId;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="contractor_id")
+	@JsonBackReference
+	private User contractorId;
 
 	public ServiceAttendace() {
 	}
@@ -90,12 +96,19 @@ public class ServiceAttendace implements Serializable {
 		return file;
 	}
 
-	public User getUser() {
-		return this.user;
+	public User getStudentId() {
+		return studentId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setStudentId(User studentId) {
+		this.studentId = studentId;
 	}
 
+	public User getContractorId() {
+		return contractorId;
+	}
+
+	public void setContractorId(User contractorId) {
+		this.contractorId = contractorId;
+	}
 }
