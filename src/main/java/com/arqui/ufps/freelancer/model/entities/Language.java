@@ -1,5 +1,7 @@
 package com.arqui.ufps.freelancer.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -24,6 +26,7 @@ public class Language implements Serializable {
 
 	//bi-directional many-to-one association to CurriculumVitae
 	@ManyToOne
+	@JsonBackReference(value = "languagesCurriculum")
 	@JoinColumn(name="curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae;
 

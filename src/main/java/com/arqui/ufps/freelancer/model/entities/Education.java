@@ -1,5 +1,7 @@
 package com.arqui.ufps.freelancer.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Education implements Serializable {
 
 	//bi-directional many-to-one association to StudentEducation
 	@OneToMany(mappedBy="education")
+	@JsonManagedReference(value = "studentEducations")
 	private List<StudentEducation> studentEducations;
 
 	public Education() {

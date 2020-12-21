@@ -1,5 +1,7 @@
 package com.arqui.ufps.freelancer.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -22,10 +24,12 @@ public class StudentSkill implements Serializable {
 
 	//bi-directional many-to-one association to Skill
 	@ManyToOne
+	@JsonBackReference(value = "studentSkills")
 	private Skill skill;
 
 	//bi-directional many-to-one association to CurriculumVitae
 	@ManyToOne
+	@JsonBackReference(value = "skillsCurriculum")
 	@JoinColumn(name="curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae;
 

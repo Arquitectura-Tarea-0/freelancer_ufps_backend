@@ -1,6 +1,7 @@
 package com.arqui.ufps.freelancer.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class CurriculumVitae implements Serializable {
 
 	//bi-directional many-to-one association to Certificate
 	@OneToMany(mappedBy="curriculumVitae")
+	@JsonManagedReference(value = "certificatesCurriculum")
 	private List<Certificate> certificates;
 
 	//bi-directional many-to-one association to User
@@ -42,14 +44,17 @@ public class CurriculumVitae implements Serializable {
 
 	//bi-directional many-to-one association to Language
 	@OneToMany(mappedBy="curriculumVitae")
+	@JsonManagedReference(value = "languagesCurriculum")
 	private List<Language> languages;
 
 	//bi-directional many-to-one association to StudentEducation
 	@OneToMany(mappedBy="curriculumVitae")
+	@JsonManagedReference(value = "educationsCurriculum")
 	private List<StudentEducation> studentEducations;
 
 	//bi-directional many-to-one association to StudentSkill
 	@OneToMany(mappedBy="curriculumVitae")
+	@JsonManagedReference(value = "skillsCurriculum")
 	private List<StudentSkill> studentSkills;
 
 	public CurriculumVitae() {
