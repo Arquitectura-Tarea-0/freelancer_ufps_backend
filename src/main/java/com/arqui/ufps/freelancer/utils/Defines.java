@@ -12,4 +12,5 @@ public class Defines {
     public static final Pair<Integer, String> CATEGORY_NOT_FOUND            = Pair.of(4, "Categoria no encontrada");
     public static final Pair<Integer, String> SERVICE_OFFER_NOT_FOUND       = Pair.of(5, "Oferta de servicio no encontrada");
     public static final Pair<Integer, String> CONTRACTOR_FOUND              = Pair.of(6, "El usuario es un contratante");
+    public static final Pair<Integer, String> ROLE_NOT_PERMITED             = Pair.of(7, "Su rol no tiene acceso a este recurso");
 }

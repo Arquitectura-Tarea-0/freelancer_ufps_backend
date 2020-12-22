@@ -1,5 +1,6 @@
 package com.arqui.ufps.freelancer.repository.dao;
 
+
 import com.arqui.ufps.freelancer.model.entities.ServiceRequest;
 
 import java.util.List;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IServiceRequestDao extends JpaRepository<ServiceRequest, Integer> {
 	
-	@Query(value = "select * from service_request where user_id = ?1", nativeQuery = true)
+	 @Query(value = "select * from service_request where id = ?1", nativeQuery = true)
+    public ServiceRequest findById(int id);
+
+	@Query(value = "select * from service_request where user_id = ?1 and state='ACTIVE' ", nativeQuery = true)
     public List<ServiceRequest> findByUser(int userId);
 
-    @Query(value = "select * from service_request where id = ?1", nativeQuery = true)
-    public ServiceRequest findById(int id);
+
 }

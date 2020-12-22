@@ -1,6 +1,7 @@
 package com.arqui.ufps.freelancer.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -39,6 +40,7 @@ public class ServiceRequest implements Serializable {
     private User user;
 
     //bi-directional many-to-one association to Category
+    @JsonManagedReference
     @ManyToOne
     private Category category;
 
