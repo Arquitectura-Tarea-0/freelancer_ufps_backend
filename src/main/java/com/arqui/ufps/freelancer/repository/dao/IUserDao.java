@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IUserDao extends JpaRepository<User, Integer>{
-    @Query("select u from User u where u.email=?1")
+    @Query(value="select * from Users u where u.email=?1",nativeQuery = true)
 	public User findByEmail(String email);
+    
+    @Query(value="select * from Users u where u.id_user=?1",nativeQuery = true)
+    public User findUserById(Integer id);
 }

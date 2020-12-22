@@ -26,7 +26,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/", "/signup", "/user/**", "/v2/**", "/swagger-ui/**").permitAll()
+        http.authorizeRequests().antMatchers("/", "/login","/category","/offer/**","/signup", "/user/**", "/v2/**", "/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
